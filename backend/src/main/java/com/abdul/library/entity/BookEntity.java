@@ -4,25 +4,31 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import com.abdul.library.model.Book;
 
+@Entity
+@Table(name="Book")
 public class BookEntity {
 	@Id
+	@Column(name="book_isbn")
 	private String isbn;
-	@Column(name="title")
+	@Column(name="book_title")
 	private String title;
-	@Column(name="year")
+	@Column(name="book_year")
 	private int year;
-	@Column(name="quantity")
+	@Column(name="book_quantity")
 	private int quantity;
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "genre")
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name="book_genre")
 	private GenreEntity genreEntity;
 	
-	private List<Book> bookList;
 
 	public String getIsbn() {
 		return isbn;
@@ -64,13 +70,6 @@ public class BookEntity {
 		this.genreEntity = genreEntity;
 	}
 
-	public List<Book> getBookList() {
-		return bookList;
-	}
-
-	public void setBookList(List<Book> bookList) {
-		this.bookList = bookList;
-	}
 	
 	
 	

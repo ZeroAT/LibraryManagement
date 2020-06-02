@@ -23,7 +23,7 @@ public class BookDAOImpl implements BookDAO{
 
 	@Override
 	public List<Book> getBookCatalog() throws Exception {
-		Query query = em.createQuery("SELECT * FROM BOOK");
+		Query query = em.createQuery("SELECT b FROM BookEntity b");
 		List<BookEntity> bookEntityList = query.getResultList();
 		List<Book> bookList = new ArrayList<>();
 		
@@ -41,7 +41,9 @@ public class BookDAOImpl implements BookDAO{
 					bookList.add(book);
 				});
 
-		
+		if(bookList.isEmpty()){
+			return null;
+		}
 		return bookList;
 	}
 	

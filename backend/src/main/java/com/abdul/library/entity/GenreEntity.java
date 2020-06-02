@@ -11,15 +11,16 @@ import javax.persistence.Table;
 @Table(name = "Genre")
 public class GenreEntity {
 	@Id
+	@Column(name="genre_id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
-	@Column(name="name")
+	private int Id;
+	@Column(name="genre_name")
 	private String name;
 	public int getId() {
-		return id;
+		return Id;
 	}
 	public void setId(int id) {
-		this.id = id;
+		Id = id;
 	}
 	public String getName() {
 		return name;
@@ -27,5 +28,7 @@ public class GenreEntity {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	
 	
 }
