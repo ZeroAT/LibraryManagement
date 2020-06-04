@@ -46,6 +46,26 @@ public class BookDAOImpl implements BookDAO{
 		}
 		return bookList;
 	}
+
+	@Override
+	public List<Genre> getGenreCatalog() throws Exception {
+		
+		Query query = em.createQuery("SELECT G FROM GenreEntity G");
+		List<GenreEntity> genreEntityList = query.getResultList();
+		List<Genre> genreList = new ArrayList<>();
+		
+		genreEntityList.forEach(
+				entity -> {
+					Genre genre = new Genre();
+					genre.setId(entity.getId());
+					genre.setName(entity.getName());
+					genreList.add(genre);
+				});
+		if(genreList.isEmpty()){
+			return null;
+		}
+		return genreList;
+	}
 	
 
 

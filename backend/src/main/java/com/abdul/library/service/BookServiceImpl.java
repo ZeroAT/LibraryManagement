@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.abdul.library.dao.BookDAO;
 import com.abdul.library.model.Book;
+import com.abdul.library.model.Genre;
 
 
 @Service
@@ -21,6 +22,11 @@ public class BookServiceImpl implements BookService{
 	@Override
 	public List<Book> getBookCatalog() throws Exception{
 		return bookDAOImpl.getBookCatalog();
+	}
+
+	@Override
+	public List<Genre> getGenreCatalog() throws Exception {
+		return bookDAOImpl.getGenreCatalog();
 	}
 	
 

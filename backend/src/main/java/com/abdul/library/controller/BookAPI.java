@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.abdul.library.model.Book;
+import com.abdul.library.model.Genre;
 import com.abdul.library.service.BookService;
 
 import ch.qos.logback.core.net.SyslogOutputStream;
@@ -41,6 +42,16 @@ public class BookAPI {
 		}
 		
 		
+	}
+	@GetMapping(value="GetAllGenres")
+	public ResponseEntity<List<Genre>> getAllGenres() throws Exception {
+		try{
+			List<Genre> genreList = bookServiceImpl.getGenreCatalog();
+			return new ResponseEntity<List<Genre>>(genreList,HttpStatus.OK);
+			
+		}catch(Exception e){
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, env.getProperty(e.getMessage()));
+		}
 	}
 	
 
