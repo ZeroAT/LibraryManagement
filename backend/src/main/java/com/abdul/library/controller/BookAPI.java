@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.abdul.library.model.Author;
 import com.abdul.library.model.Book;
 import com.abdul.library.model.Genre;
 import com.abdul.library.service.BookService;
@@ -51,6 +52,16 @@ public class BookAPI {
 			
 		}catch(Exception e){
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, env.getProperty(e.getMessage()));
+		}
+	}
+	
+	@GetMapping(value="GetAllAuthors")
+	public ResponseEntity<List<Author>> getAllAuthors() throws Exception {
+		try{
+			List<Author> authorList = bookServiceImpl.getAuthorList();
+			return new ResponseEntity<List<Author>>(authorList, HttpStatus.OK);
+		}catch(Exception e){
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,env.getProperty(e.getMessage()));
 		}
 	}
 	

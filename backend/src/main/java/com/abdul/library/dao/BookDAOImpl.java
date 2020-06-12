@@ -10,8 +10,10 @@ import javax.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.abdul.library.entity.AuthorEntity;
 import com.abdul.library.entity.BookEntity;
 import com.abdul.library.entity.GenreEntity;
+import com.abdul.library.model.Author;
 import com.abdul.library.model.Book;
 import com.abdul.library.model.Genre;
 
@@ -65,6 +67,31 @@ public class BookDAOImpl implements BookDAO{
 			return null;
 		}
 		return genreList;
+	}
+
+	@Override
+	public List<Author> getAuthorList() throws Exception {
+		Query query = em.createQuery("SELECT a from AuthorEntity a");
+		
+		List<AuthorEntity> authorEntityList = query.getResultList();
+		List<Author> authorList = new ArrayList<>();
+		
+		authorEntityList.forEach(
+				entity -> {
+					Author author = new Author();
+					author.setAuthorId(entity.getId());
+					author.setAuthorFirstName(entity.getFirstName());
+					author.setAuthorLastName(entity.getLastName());
+					author.setAuthorMiddleName(entity.getMiddleName());
+					authorList.add(author);
+			
+		});
+		
+		if(authorList.isEmpty()){
+			return null;
+		}
+		return authorList;
+		
 	}
 	
 

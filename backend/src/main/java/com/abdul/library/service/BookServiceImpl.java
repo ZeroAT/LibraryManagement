@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.abdul.library.dao.BookDAO;
+import com.abdul.library.model.Author;
 import com.abdul.library.model.Book;
 import com.abdul.library.model.Genre;
 
@@ -27,6 +28,11 @@ public class BookServiceImpl implements BookService{
 	@Override
 	public List<Genre> getGenreCatalog() throws Exception {
 		return bookDAOImpl.getGenreCatalog();
+	}
+
+	@Override
+	public List<Author> getAuthorList() throws Exception {
+		return bookDAOImpl.getAuthorList();
 	}
 	
 
